@@ -32,7 +32,8 @@ h1 {
 button {
     padding: 15px;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2 rem;
+    font-size: 1.3rem;
+    text-transform: uppercase;
     cursor: pointer;
     border: none;
     background: #333;
