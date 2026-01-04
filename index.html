@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIW</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="titulo-test">Panel de Control DIW</h1>
+
+        <div id="menu-principal" class="grid-menu">
+            <button onclick="iniciarTest('uf1')">UF1: Diseño</button>
+            <button onclick="iniciarTest('uf2')">UF2: CSS Base</button>
+            <button onclick="iniciarTest('uf3')">UF3: SASS/Media</button>
+            <button onclick="iniciarTest('uf4')">UF4: Frameworks</button>
+            <button onclick="iniciarTest('uf5')">UF5: Multimedia</button>
+            <button onclick="iniciarTest('uf6')">UF6: Interactividad</button>
+            <button onclick="iniciarTest('uf7')">UF7: Accesibilidad</button>
+            <button onclick="iniciarTest('mix')" class="btn-mix">EXAMEN MIX</button>
+        </div>
+
+        <div id="zona-test" style="display: none;">
+            <div id="preguntas-lista"></div>
+            <div class="controles-finales">
+                <button id="btn-nota" class="btn-accion">CALCULAR NOTA</button>
+                <button onclick="volverAlMenu()" class="btn-accion btn-volver">VOLVER AL MENÚ</button>
+            </div>
+            <div id="resultado"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

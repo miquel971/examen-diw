@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap');
+
+body {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: #c6c8c8;
+}
+
+/* Menú de botones */
+.grid-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button {
+    padding: 15px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: #333;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #555;
+    transform: scale(1.02);
+}
+
+.btn-mix {
+    grid-column: span 2;
+    background: #11ff00;
+    color: #000;
+}
+
+/* Preguntas */
+.pregunta {
+    background: #1e1e1e;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.opcion {
+    background: #2a2a2a;
+    text-align: left;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    text-transform: none;
+}
+
+.correcta { background: #28a745 !important; color: white; }
+.incorrecta { background: #dc3545 !important; color: white; }
+
+/* LAS FRASES ÉPICAS */
+.frase-test {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 4rem; /* Tamaño gigante tipo Franklin Gothic */
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1;
+}
+
+.nota-critica { color: #FF0000; } 
+.nota-aprobada { color: #FFD700; } 
+.nota-notable  { color: #32CD32; } 
+.nota-crack    { 
+    color: #00FFFF; 
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); 
+}
+
+#resultado {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 50px;
+}
+
+.btn-accion {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-volver {
+    background: #444;
+}
