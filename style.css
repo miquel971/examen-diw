@@ -6,6 +6,16 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 20px;
+    transition: background 0.5s ease;
+}
+
+/* Fondo especial modo MAD */
+body.mad-active {
+    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/mad.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .container {
@@ -21,7 +31,6 @@ h1 {
     color: #c6c8c8;
 }
 
-/* Menú de botones */
 .grid-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -52,61 +61,35 @@ button:hover {
     color: #000;
 }
 
-/* Preguntas */
-.pregunta {
-    background: #1e1e1e;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+/* Estilo del botón secreto para avispados */
+.btn-hidden {
+    grid-column: span 2;
+    background: transparent !important;
+    border: none !important;
+    color: #252525 !important; /* Casi igual al fondo */
+    font-size: 0.6rem !important;
+    text-transform: lowercase !important;
+    cursor: crosshair !important;
+    margin-top: 10px;
 }
 
-.opciones {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.btn-hidden:hover {
+    color: #f08bad !important; /* Se revela en rosa al pasar el ratón */
 }
 
-.opcion {
-    background: #2a2a2a;
-    text-align: left;
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    text-transform: none;
-}
-
+/* Preguntas y resultados */
+.pregunta { background: #1e1e1e; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+.opciones { display: flex; flex-direction: column; gap: 10px; }
+.opcion { background: #2a2a2a; text-align: left; font-size: 1rem; }
 .correcta { background: #28a745 !important; color: white; }
 .incorrecta { background: #dc3545 !important; color: white; }
 
-/* LAS FRASES ÉPICAS */
-.frase-test {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 4rem; /* Tamaño gigante tipo Franklin Gothic */
-    text-align: center;
-    margin-top: 20px;
-    line-height: 1;
-}
-
+.frase-test { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 4rem; text-align: center; margin-top: 20px; line-height: 1; }
 .nota-critica { color: #FF0000; } 
 .nota-aprobada { color: #FFD700; } 
 .nota-notable  { color: #32CD32; } 
-.nota-crack    { 
-    color: #00FFFF; 
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); 
-}
+.nota-crack    { color: #00FFFF; text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
 
-#resultado {
-    text-align: center;
-    margin-top: 30px;
-    padding-bottom: 50px;
-}
-
-.btn-accion {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.btn-volver {
-    background: #444;
-}
+#resultado { text-align: center; margin-top: 30px; padding-bottom: 50px; }
+.btn-accion { width: 100%; margin-bottom: 10px; }
+.btn-volver { background: #444; }

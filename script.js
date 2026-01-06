@@ -325,3 +325,8 @@ function volverAlMenu() {
     titulo.innerText = "Panel de Control DIW";
     window.scrollTo(0, 0);
 }
+
+// Al final de tu script.js
+document.getElementById('btn-mad').addEventListener('click', function() {
+    document.body.classList.toggle('mad-active');
+});
