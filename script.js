@@ -291,7 +291,6 @@ function validar(btn, pIdx, oIdx) {
     }
 }
 
-// LOGICA DE LAS FRASES Y NOTA
 document.getElementById('btn-nota').onclick = () => {
     const notaFinal = (aciertos / preguntasActuales.length) * 10;
     let frase = "";
@@ -326,7 +325,16 @@ function volverAlMenu() {
     window.scrollTo(0, 0);
 }
 
-// Al final de tu script.js
-document.getElementById('btn-mad').addEventListener('click', function() {
-    document.body.classList.toggle('mad-active');
+// Lógica para rotar entre fondo normal, foto 1 y foto 2
+document.getElementById('btn-carceles').addEventListener('click', function() {
+    const body = document.body;
+    
+    if (!body.classList.contains('carceles-v1') && !body.classList.contains('carceles-v2')) {
+        body.classList.add('carceles-v1');
+    } else if (body.classList.contains('carceles-v1')) {
+        body.classList.remove('carceles-v1');
+        body.classList.add('carceles-v2');
+    } else {
+        body.classList.remove('carceles-v2');
+    }
 });

@@ -9,9 +9,18 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Fondo especial modo MAD */
-body.mad-active {
-    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/mad.jpg');
+/* Estado 1: Foto 1.jpg */
+body.carceles-v1 {
+    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/1.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* Estado 2: Foto 2.jpg */
+body.carceles-v2 {
+    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/2.jpg');
     background-size: cover;
     background-position: center 30%;
     background-attachment: fixed;
@@ -61,12 +70,12 @@ button:hover {
     color: #000;
 }
 
-/* Estilo del botón secreto para avispados */
+/* Botón "cárceles" camuflado (Casi invisible) */
 .btn-hidden {
     grid-column: span 2;
     background: transparent !important;
     border: none !important;
-    color: #252525 !important; /* Casi igual al fondo */
+    color: #252525 !important; 
     font-size: 0.6rem !important;
     text-transform: lowercase !important;
     cursor: crosshair !important;
@@ -74,17 +83,27 @@ button:hover {
 }
 
 .btn-hidden:hover {
-    color: #f08bad !important; /* Se revela en rosa al pasar el ratón */
+    color: #f08bad !important;
 }
 
-/* Preguntas y resultados */
+/* Estilos de Test */
 .pregunta { background: #1e1e1e; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
 .opciones { display: flex; flex-direction: column; gap: 10px; }
-.opcion { background: #2a2a2a; text-align: left; font-size: 1rem; }
+.opcion { background: #2a2a2a; text-align: left; font-size: 1rem; text-transform: none; }
 .correcta { background: #28a745 !important; color: white; }
 .incorrecta { background: #dc3545 !important; color: white; }
 
-.frase-test { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 4rem; text-align: center; margin-top: 20px; line-height: 1; }
+/* Resultados finales */
+.frase-test {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1;
+}
+
 .nota-critica { color: #FF0000; } 
 .nota-aprobada { color: #FFD700; } 
 .nota-notable  { color: #32CD32; } 
