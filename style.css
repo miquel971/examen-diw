@@ -153,10 +153,10 @@ button:hover {
 }
 
 /* Colores de nota */
-.nota-critica { color: #FF4444; } 
-.nota-aprobada { color: #FFD700; } 
-.nota-notable  { color: #32CD32; } 
-.nota-crack    { color: #00FFFF; }
+.nota-critica { color: #f6f3f3; } 
+.nota-aprobada { color: #f8f7f4; } 
+.nota-notable  { color: #f8f7f4; } 
+.nota-crack    { color: #f8f7f4; }
 
 /* --- CONTROLES --- */
 .btn-accion { width: 100%; margin-bottom: 8px; }
