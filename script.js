@@ -234,6 +234,9 @@ const lista = document.getElementById('preguntas-lista');
 const titulo = document.getElementById('titulo-test');
 const divResultado = document.getElementById('resultado');
 
+/**
+ * Inicia el modo de test seleccionado.
+ */
 function iniciarTest(modo) {
     menuPrincipal.style.display = 'none';
     zonaTest.style.display = 'block';
@@ -250,8 +253,12 @@ function iniciarTest(modo) {
     }
 
     renderizarPreguntas();
+    window.scrollTo(0, 0);
 }
 
+/**
+ * Genera el mix de preguntas para el examen final.
+ */
 function generarExamenMix() {
     let mix = [];
     const sacar = (uf, n) => [...db[uf]].sort(() => 0.5 - Math.random()).slice(0, n);
@@ -259,65 +266,112 @@ function generarExamenMix() {
     return mix;
 }
 
+/**
+ * Baraja aleatoriamente los elementos de un array (Algoritmo Fisher-Yates).
+ */
+function barajar(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+/**
+ * Pinta las preguntas en el HTML con opciones en posiciones aleatorias.
+ */
 function renderizarPreguntas() {
     preguntasActuales.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'pregunta';
-        div.innerHTML = `<p>${i + 1}. ${p.q}</p><div class="opciones" id="opts-${i}"></div>`;
+        div.innerHTML = `
+            <p>${i + 1}. ${p.q}</p>
+            <div class="opciones" id="opts-${i}"></div>
+            <span id="feedback-${i}" class="feedback-pequeno"></span>
+        `;
         lista.appendChild(div);
 
         const containerOpts = document.getElementById(`opts-${i}`);
-        p.a.forEach((opt, idx) => {
+        
+        // Creamos una estructura para rastrear cuál es la correcta después de mezclar
+        let opcionesMezcladas = p.a.map((texto, index) => ({
+            texto: texto,
+            esCorrecta: index === p.c
+        }));
+
+        // Mezclamos las opciones (A, B, C rotan)
+        barajar(opcionesMezcladas);
+
+        opcionesMezcladas.forEach((opt) => {
             const btn = document.createElement('button');
             btn.className = 'opcion';
-            btn.innerText = opt;
-            btn.onclick = () => validar(btn, i, idx);
+            btn.innerText = opt.texto;
+            btn.onclick = () => validar(btn, i, opt.esCorrecta, containerOpts);
             containerOpts.appendChild(btn);
         });
     });
 }
 
-function validar(btn, pIdx, oIdx) {
-    const opciones = document.getElementById(`opts-${pIdx}`).children;
+
+
+/**
+ * Valida la respuesta seleccionada y da feedback visual pequeño.
+ */
+function validar(btn, pIdx, esCorrecta, container) {
+    const opciones = container.children;
+    const feedback = document.getElementById(`feedback-${pIdx}`);
+    
+    // Si ya se ha respondido a esta pregunta, no hacer nada
     if (opciones[0].disabled) return;
+    
+    // Deshabilitar todos los botones de esta pregunta
     for (let b of opciones) b.disabled = true;
 
-    if (oIdx === preguntasActuales[pIdx].c) {
+    if (esCorrecta) {
         btn.classList.add('correcta');
+        feedback.innerText = "✓ Correcto";
+        feedback.style.color = "#28a745";
         aciertos++;
     } else {
         btn.classList.add('incorrecta');
-        opciones[preguntasActuales[pIdx].c].classList.add('correcta');
+        feedback.innerText = "✗ Incorrecto";
+        feedback.style.color = "#dc3545";
+        
+        // Buscar y marcar la correcta entre los botones para que el usuario aprenda
+        const preguntaOriginal = preguntasActuales[pIdx];
+        const textoCorrecto = preguntaOriginal.a[preguntaOriginal.c];
+        
+        Array.from(opciones).forEach(b => {
+            if (b.innerText === textoCorrecto) b.classList.add('correcta');
+        });
     }
 }
 
+/**
+ * Calcula la nota final sobre 10 y muestra el resultado.
+ */
 document.getElementById('btn-nota').onclick = () => {
     const notaFinal = (aciertos / preguntasActuales.length) * 10;
     let frase = "";
     let clase = "";
 
-    if (notaFinal < 5) {
-        frase = "WATTAFAK?";
-        clase = "nota-critica";
-    } else if (notaFinal < 7) {
-        frase = "ESBIEN";
-        clase = "nota-aprobada";
-    } else if (notaFinal < 9) {
-        frase = "BOMBOCLAT";
-        clase = "nota-notable";
-    } else {
-        frase = "PUTACRANCKPELUT!!!";
-        clase = "nota-crack";
-    }
+    // Lógica de frases según nota
+    if (notaFinal < 5) { frase = "WATTAFAK?"; clase = "nota-critica"; }
+    else if (notaFinal < 7) { frase = "ESBIEN"; clase = "nota-aprobada"; }
+    else if (notaFinal < 9) { frase = "BOMBOCLAT"; clase = "nota-notable"; }
+    else { frase = "PUTACRANCKPELUT!!!"; clase = "nota-crack"; }
 
     divResultado.innerHTML = `
-        <div style="font-size: 1.5rem;">Nota: ${aciertos} / ${preguntasActuales.length}</div>
+        <div class="nota-numero ${clase}">Nota: ${notaFinal.toFixed(2)} / 10</div>
         <div class="frase-test ${clase}">${frase}</div>
     `;
     
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 };
 
+/**
+ * Regresa al panel principal.
+ */
 function volverAlMenu() {
     zonaTest.style.display = 'none';
     menuPrincipal.style.display = 'grid';
@@ -325,10 +379,11 @@ function volverAlMenu() {
     window.scrollTo(0, 0);
 }
 
-// Lógica para rotar entre fondo normal, foto 1 y foto 2
+/**
+ * Cambia el fondo de pantalla (Cárceles).
+ */
 document.getElementById('btn-carceles').addEventListener('click', function() {
     const body = document.body;
-    
     if (!body.classList.contains('carceles-v1') && !body.classList.contains('carceles-v2')) {
         body.classList.add('carceles-v1');
     } else if (body.classList.contains('carceles-v1')) {

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap');
 
+/* --- ESTILOS BASE Y FONDOS --- */
 body {
     background-color: #1f1f1f;
     color: #ffffff;
@@ -40,6 +41,7 @@ h1 {
     color: #c6c8c8;
 }
 
+/* --- MENÚ PRINCIPAL --- */
 .grid-menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -68,9 +70,10 @@ button:hover {
     grid-column: span 2;
     background: #11ff00;
     color: #000;
+    font-weight: bold;
 }
 
-/* Botón "cárceles" camuflado (Casi invisible) */
+/* Botón "cárceles" camuflado */
 .btn-hidden {
     grid-column: span 2;
     background: transparent !important;
@@ -86,29 +89,98 @@ button:hover {
     color: #f08bad !important;
 }
 
-/* Estilos de Test */
-.pregunta { background: #1e1e1e; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
-.opciones { display: flex; flex-direction: column; gap: 10px; }
-.opcion { background: #2a2a2a; text-align: left; font-size: 1rem; text-transform: none; }
-.correcta { background: #28a745 !important; color: white; }
-.incorrecta { background: #dc3545 !important; color: white; }
+/* --- ESTILOS DEL TEST Y PREGUNTAS --- */
+.pregunta { 
+    background: #1e1e1e; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    border-radius: 8px; 
+    border-left: 5px solid #333;
+}
 
-/* Resultados finales */
+.pregunta p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.opciones { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.opcion { 
+    background: #2a2a2a; 
+    text-align: left; 
+    font-size: 1rem; 
+    text-transform: none; 
+    padding: 12px;
+    border-radius: 4px;
+}
+
+/* --- FEEDBACK Y VALIDACIÓN --- */
+.correcta { 
+    background: #28a745 !important; 
+    color: white !important; 
+}
+
+.incorrecta { 
+    background: #dc3545 !important; 
+    color: white !important; 
+}
+
+/* Mensaje pequeño de acierto/error solicitado */
+.feedback-pequeno {
+    font-size: 0.8rem; 
+    margin-top: 8px;
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- RESULTADOS FINALES --- */
+#resultado { 
+    text-align: center; 
+    margin-top: 30px; 
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding-bottom: 50px; 
+}
+
+.nota-numero {
+    font-size: 2.5rem;
+    font-family: 'Oswald', sans-serif;
+    display: block;
+    margin-bottom: 5px;
+}
+
 .frase-test {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-align: center;
-    margin-top: 20px;
     line-height: 1;
 }
 
+/* Colores de nota según resultado */
 .nota-critica { color: #FF0000; } 
 .nota-aprobada { color: #FFD700; } 
 .nota-notable  { color: #32CD32; } 
 .nota-crack    { color: #00FFFF; text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
 
-#resultado { text-align: center; margin-top: 30px; padding-bottom: 50px; }
-.btn-accion { width: 100%; margin-bottom: 10px; }
-.btn-volver { background: #444; }
+/* --- CONTROLES DE NAVEGACIÓN --- */
+.btn-accion { 
+    width: 100%; 
+    margin-bottom: 10px; 
+}
+
+.btn-volver { 
+    background: #444; 
+    font-size: 0.9rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #11ff00;
+}
