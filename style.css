@@ -119,14 +119,14 @@ button:hover {
 .incorrecta { background: #dc3545 !important; color: white !important; }
 
 .feedback-pequeno {
-    font-size: 0.75rem; /* Muy discreto */
+    font-size: 0.75rem;
     margin-top: 6px;
     font-weight: bold;
     display: block;
     text-transform: uppercase;
 }
 
-/* --- RESULTADOS FINALES (CORREGIDO: MUCHO MÁS PEQUEÑO) --- */
+/* --- RESULTADOS FINALES (CORREGIDO: PEQUEÑO Y COLOR HUESO) --- */
 #resultado { 
     text-align: center; 
     margin-top: 25px; 
@@ -136,27 +136,32 @@ button:hover {
 }
 
 .nota-numero {
-    font-size: 1.2rem; /* Tamaño reducido de la nota */
+    font-size: 1.2rem; 
     font-family: 'Oswald', sans-serif;
     display: block;
     margin-bottom: 4px;
+    color: #f8f7f4 !important; /* Color hueso forzado */
 }
 
 .frase-test {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 1.1rem; /* FRASES ÉPICAS PEQUEÑAS COMO PEDISTE */
+    font-size: 1.1rem; /* Frase pequeña pedida */
     text-align: center;
     line-height: 1;
     letter-spacing: 0px;
+    color: #f8f7f4 !important; /* Color hueso forzado */
 }
 
-/* Colores de nota */
-.nota-critica { color: #f6f3f3; } 
-.nota-aprobada { color: #f8f7f4; } 
-.nota-notable  { color: #f8f7f4; } 
-.nota-crack    { color: #f8f7f4; }
+/* Clases de colores (Sustituidas para evitar el rojo) */
+.nota-critica, 
+.nota-aprobada, 
+.nota-notable, 
+.nota-crack { 
+    color: #f8f7f4 !important; 
+    text-shadow: none !important;
+}
 
 /* --- CONTROLES --- */
 .btn-accion { width: 100%; margin-bottom: 8px; }
